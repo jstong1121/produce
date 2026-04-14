@@ -3,9 +3,659 @@
 /* ===== NEXT WRITE GLOBAL STYLES, THEN USE MEDIA QUERIES FOR LAYOUT/STYLE ADJUSTMENTS ===== */
 /* ===== STARTER CSS BELOW FOR body AND p IS JUST AN EXAMPLE... YOU MAY DELETE IT ===== */
 
-body {
-    background: magenta;
+/* Color palette:
+    Midnight Blue    #060934  (page background)
+    Soft White       #F0EDE6  (primary text)
+    Dusty Lavender   #A091B8  (secondary text)
+    Mist Blue        #C3D4E6  (tertiary text)
+    Spotlight Yellow #FDDC43  (accent / highlight)
+    Steel Indigo     #505992  (surface 1 / selected)
+    Deep Navy        #0d1148  (surface 2 / cards)
+    Dark Navy        #0a0d30  (surface 3 / deeper cards)
+    Ink Navy         #040720  (topbar / sidebar)
+    Border Dim       #1a1d4a  (default borders)           */
+
+
+@import url('https://fonts.googleapis.com/css2?family=Bayon&family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap');
+
+*, *::before, *::after {
+     box-sizing: border-box;
+     margin: 0;
+     padding: 0;
 }
-p {
-    font-size: 2em;
+
+body {
+    background: #060934;
+    color: #F0EDE6;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.app {
+     min-height: 100vh;
+}
+
+
+/*Screen Switching*/
+.screen {
+    display: none;
+    padding-top: 3rem; /* Account for fixed topbar */
+}
+.screen.active {
+    display: block;
+}
+
+
+
+
+/*   ------------------   TOP BAR   -----------------   */
+.topbar{
+    background: #040720;
+    border-bottom: 1px solid #1a1d4a;
+    padding: 0.55rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;;
+}
+
+.nav-title{
+    font-family: 'Bayon', sans-serif;
+    font-size: 1.2rem;
+    color: #FDDC43;
+    cursor: pointer;
+    user-select: none;
+}
+
+.nav{
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+.nav-btn{
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: none;
+    border: 1px solid #1a1d4a;
+    color: #505992;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: border-color 0.3s, color 0.3s;
+}
+
+.nav-btn:hover {
+    border-color: #505992;
+    color: #F0EDE6;
+}
+
+.nav-btn.active {
+    border-color: #FDDC43;
+    color: #FDDC43;
+}
+
+
+
+
+
+/*   ------------------   HOME   -----------------   */
+
+.home{
+    min-height: calc(100vh - 44px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.home-main{
+    padding: 4rem 5rem;
+    display: flex;
+    flex-direction: column;
+    gap:0;
+}
+
+.home-label{
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.75rem;
+    font-weight: 300;
+    color: #505992;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+
+.home-title{
+    font-family: 'Bayon', sans-serif;
+    font-size: 7rem;
+    letter-spacing: 0.04em;
+    font-weight: 400;
+    color: #FDDC43;
+    line-height: 0.9;
+    margin-bottom: 1.8rem;
+}
+
+.home-tagline {
+    font-size: 1rem;
+    color: #C3D4E6;
+    max-width: 80ch;
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+}
+
+.home-buttons{
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.home-btn1{
+    font-family: 'Bayon', sans-serif;
+     font-size: 1rem;
+     letter-spacing: 0.12em;
+     background: #FDDC43;
+     color: #060934;
+     border: none;
+     padding: 0.8rem 2.2rem;
+     border-radius: 4px;
+      cursor: pointer;
+     transition: background 0.2s, transform 0.15s;
+}
+.home-btn1:hover{
+    background: #fff;
+    transform: translateY(-1px);
+}
+
+.home-btn2{
+    font-family: 'Bayon', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 0.12em;
+     background: none;
+     color: #F0EDE6;
+     border: 1px solid #505992;
+     padding: 0.8rem 2.2rem;
+     border-radius: 4px;
+     cursor: pointer;
+     transition: border-color 0.2s, color 0.2s;
+}
+.home-btn2:hover{
+     border-color: #FDDC43;
+    color: #FDDC43;
+}
+
+.cta-btn {
+    font-family: 'Bayon', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 0.12em;
+    background: #FDDC43;
+    color: #060934;
+    border: none;
+    padding: 0.8rem 2.2rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+}
+
+.cta-btn:hover {
+    background: #fff;
+    transform: translateY(-1px);
+}
+
+
+
+
+
+
+/*   ------------------   LEARN   -----------------   */
+
+/*hero*/
+.hero{
+    padding: 4rem 5rem;
+}
+
+.hero-label{
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.75rem;
+    font-weight: 300;
+    color: #FDDC43;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+
+.hero-title{
+    font-family: 'Bayon', sans-serif;
+    font-size: 3.5rem;
+    letter-spacing: 0.04em;
+    font-weight: 400;
+    color: #FDDC43;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+}
+
+.hero-body {
+    font-size: 1rem;
+    color: #C3D4E6;
+    max-width: 1200px;
+    line-height: 1.8;
+}
+
+/*main content*/
+.body1, .body2, .body3, .body4, .body5, .body6 {
+    padding: 2.3rem 5rem;
+    border-bottom: #1a1d4a 1px solid;
+}
+
+.sec-label{
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.75rem;
+    font-weight: 300;
+    color: #505992;
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+}
+
+.sec-title{
+    font-family: 'Bayon', sans-serif;
+    font-size: 1.6rem;
+    color: #F0EDE6;
+    margin-bottom: 0.8rem;
+    letter-spacing: 0.04em;
+}
+
+.sec-body{
+    font-size: 1rem;
+    color: #C3D4E6;
+    line-height: 1.85;
+    max-width: 85ch;
+}
+
+mark{
+    background: none;
+    color: #FDDC43;
+    cursor: pointer;
+    border-bottom: #FDDC43 1px dashed;
+    transition: color 0.3s, border-color 0.3s;
+}
+mark:hover {
+    color: #A091B8;
+    border-color: #A091B8;
+}
+
+/*Role Card*/
+.role-grids{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 0.6rem;
+    margin-top: 1.5rem;
+}
+
+.role-card{
+    background: #0d1148;
+    border: #1a1d4a 1px solid;
+    border-radius: 6px;
+    padding: 0.8rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.role-label{
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.65rem;
+    font-weight: 300;
+    color: #505992;
+    text-transform: uppercase;
+    margin-bottom: 0.1rem;
+}
+
+.role-name{
+    font-size: 1.25rem;
+    color: #C3D4E6;
+    margin-bottom: 0.5rem;
+}
+
+.role-desc{
+    font-size: 0.9rem;
+    color: #A091B8;
+    line-height: 1.4;
+}
+
+
+/*Stages*/
+.stage-title{
+    font-family: 'Bayon', sans-serif;
+    font-size: 1.4rem;
+    color: #F0EDE6;
+    letter-spacing: 0.04em;
+    padding: 1rem 0 0;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.arrow {
+    font-size: 0.8em; /* Shrink the arrow */
+    margin-right: 0.5rem;
+    display: inline-block;
+    transition: transform 0.2s ease;
+}
+
+.arrow.rotated {
+    transform: rotate(90deg);
+}
+
+.stage-title:hover {
+    color: #FDDC43;
+}
+
+.stage-title.expanded {
+    color: #FDDC43;
+}
+
+.stage-desc{
+    font-size: 1rem;
+    color: #C3D4E6;
+    line-height: 1.85;
+    border:#505992 1px solid;
+    padding: 1rem 1.5rem;
+    border-radius: 6px;
+    background: #3d4580;
+    display: none;
+    margin-top: 1rem;
+    margin-left: 1.9rem;
+}
+
+.stage-desc.expanded {
+    display: block;
+}
+
+/*Budget*/
+.budget-grids{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 0.6rem;
+    margin-top: 1.5rem;
+}
+
+.budget-card{
+    background: #0a0d30;
+    border: #1a1d4a 1px solid;
+    border-radius: 6px;
+    padding: 0.8rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.budget-tier{
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.65rem;
+    font-weight: 300;
+    color: #505992;
+    text-transform: uppercase;
+    margin-bottom: 0.1rem;
+}
+
+.budget-range{
+    font-size: 1.25rem;
+    color: #C3D4E6;
+    margin-bottom: 0.5rem;
+}
+
+.range-micro {
+    color: #A091B8;
+}
+.range-low {
+    color: #C3D4E6;
+}
+.range-mid {
+    color: #FDDC43;
+}
+.range-studio {
+    color: #4EC990;
+}
+.range-blockbuster {
+    color: #F06060;
+}
+
+.budget-desc{
+    font-size: 0.9rem;
+    color: #A091B8;
+    line-height: 1.4;
+}
+
+.budget-eg{
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.7rem;
+    color: #505992;
+    margin-top: 0.5rem;
+    border-top: 1px solid #252860;
+    padding-top: 0.5rem;
+}
+
+/*Myth*/
+.myth-grids{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.6rem;
+    margin-top: 1.5rem;
+}
+
+.myth-card{
+    background: #0d1148;
+    border: #1a1d4a 1px solid;
+    border-radius: 6px;
+    padding: 0.8rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.myth-label{
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.85rem;
+    font-weight: 300;
+    color: #F06060;
+    margin-bottom: 0.3rem;
+}
+
+.myth-desc{
+    font-size: 0.9rem;
+    color: #A091B8;
+    line-height: 1.4;
+    border-top: 1px solid #252860;
+    padding-top: 0.5rem;
+}
+
+
+/*cta*/
+.cta-bar{
+    padding: 2.3rem 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.cta-text{
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.75rem;
+    font-weight: 300;
+    color: #A091B8;
+}
+
+
+/*Tooltip*/
+.tooltip {
+  position: fixed;
+  background: #FDDC43;
+  color: #060934;
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.8rem;
+  padding: 0.5rem 0.65rem;
+  border-radius: 4px;
+  max-width: 40ch;
+  line-height: 1.5;
+  pointer-events: none;
+  z-index: 999;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+.tooltip.show {
+  opacity: 1;
+}
+
+
+/*   ------------------   SIMULATE   -----------------   */
+.sim-wrap{
+    display: grid;
+    grid-template-columns: 250px 1fr;
+}
+
+/*Sidebar*/
+.sidebar{
+    background: #040720;
+    border-right: 1px solid #1a1d4a;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    position: fixed;
+    top: 44px; /* Account for topbar */
+    left: 0;
+    bottom: 0;
+    width: 250px;
+}
+
+.side-label{
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.75rem;
+    font-weight: 300;
+    color: #505992;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+
+
+/*Pipeline*/
+.pipeline-section{
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+}
+
+.pip-stage {
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.7rem;
+    padding: 4px 7px;
+    border-radius: 4px;
+    color: #505992;
+    letter-spacing: 0.06em;
+    transition: all 0.25s;
+    border: 1px solid transparent;
+}
+
+.pip-stage.done {
+    color: #3a9c6e; border-color: #1a3d2e; 
+}
+.pip-stage.active {
+    color: #FDDC43; border-color: #FDDC43; background: #0d1148;
+}
+.pip-stage.future {
+    color: #2a2e60;
+}
+.pip-stage.done::before {
+    content: "✓ "; font-size: 9px;
+}
+.pip-stage.active::before {
+    content: "▶ ";
+}
+
+/*Resource*/
+.stat-row {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.stat-item {
+    background: #0a0d30;
+    border: 1px solid #1a1d4a;
+    border-radius: 5px;
+    padding: 0.5rem 0.8rem;
+}
+.stat-name {
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.7rem;
+    color: #505992;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.2rem;
+}
+.stat-val {
+    font-family: 'Courier Prime', monospace;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #F0EDE6;
+    transition: color 0.3s;
+}
+.stat-bar {
+    height: 3px;
+    background: #1a1d4a;
+    border-radius: 2px;
+    margin-top: 4px;
+    overflow: hidden;
+}
+.stat-fill {
+    height: 100%;
+    width: 100%;
+    border-radius: 2px;
+    transition: width 0.5s ease, background 0.5s ease;
+}
+.stat-fill--green {
+    background: #3a9c6e;
+}
+.stat-fill--yellow {
+    background: #FDDC43;
+}
+
+/*Decision Log*/
+.log-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+.log-area {
+    flex: 1;
+    overflow-y: auto;
+    max-height: 150px;
+}
+.log-entry {
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.7rem;
+    color: #505992;
+    padding: 0.2rem 0;
+    border-bottom: 1px solid #0d1148;
+    line-height: 1.4;
+}
+.log-entry.new { color: #FDDC43; }
+.log-count {
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.7rem;
+    color: #505992;
+    text-align: center;
+    padding-top: 4px;
+}
+
+
+/*Simulation Main Area*/
+
+
+
+
+/* ----------------------   RESULT PAGE   -----------------   */
+.results-main{
+    padding: 4rem 5rem;
 }
