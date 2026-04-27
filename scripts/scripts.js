@@ -1,6 +1,23 @@
 /* WRITE YOUR JS HERE... YOU MAY REQUIRE MORE THAN ONE JS FILE. IF SO SAVE IT SEPARATELY IN THE SCRIPTS DIRECTORY */
 const STAGES = ['Development', 'Pre-Production', 'Production', 'Post-Production', 'Distribution'];
 const TOTAL_DECISIONS = 9;
+const STAGE_BG_CLASSES = [
+    'sim-bg-development',
+    'sim-bg-preproduction',
+    'sim-bg-production',
+    'sim-bg-postproduction',
+    'sim-bg-distribution'
+];
+
+function updateSimBackground(stageIdx) {
+    const ma = document.getElementById('sim-main');
+    if (!ma) return;
+    STAGE_BG_CLASSES.forEach(cls => ma.classList.remove(cls));
+    if (STAGE_BG_CLASSES[stageIdx]) {
+        ma.classList.add(STAGE_BG_CLASSES[stageIdx]);
+    }
+}
+
 
 
 /*SIMULATE*/
@@ -391,6 +408,7 @@ function renderScene() {
 
     const sc = SCENARIOS[simState.decisionIdx];
     simState.stageIdx = sc.stage;
+    updateSimBackground(sc.stage);
     updateHUD();
 
     const ma = document.getElementById('sim-main');
@@ -434,11 +452,6 @@ function renderScene() {
             if (secs <= 0) { clearInterval(timerInterval); choose(1); }
         }, 1000);
     }
-
-    const ph = document.getElementById('hud-playhead');
-    if (ph) ph.style.left = Math.round(simState.decisionIdx / TOTAL_DECISIONS * 100) + '%';
-    if (window.updateHUDPlayhead) window.updateHUDPlayhead();
-
 }
 
 function choose(idx) {
@@ -465,13 +478,73 @@ function choose(idx) {
     simState.decisionIdx++;
     if (simState.decisionIdx < TOTAL_DECISIONS) {
         simState.stageIdx = SCENARIOS[simState.decisionIdx].stage;
+    const STAGE_BG_CLASSES = [
+    'sim-bg-development',
+    'sim-bg-preproduction',
+    'sim-bg-production',
+    'sim-bg-postproduction',
+    'sim-bg-distribution'
+    ];
+
+    function updateSimBackground(stageIdx) {
+      const ma = document.getElementById('sim-main');
+      if (!ma) return;
+        STAGE_BG_CLASSES.forEach(cls => ma.classList.remove(cls));
+      if (STAGE_BG_CLASSES[stageIdx]) {
+        ma.classList.add(STAGE_BG_CLASSES[stageIdx]);
+    }
+}       updateSimBackground(sc.stage);
     }
 
     addLog('[' + STAGES[sc.stage].substring(0, 4) + '] ' + c.label);
     document.querySelectorAll('.choice-btn').forEach(b => b.disabled = true);
 
     updateHUD();
-    setTimeout(() => renderScene(), 800);
+
+const ph = document.getElementById('hud-playhead');
+if (ph) ph.style.left = Math.round(simState.decisionIdx / TOTAL_DECISIONS * 100) + '%';
+
+const ma = document.getElementById('sim-main');
+const content = ma.querySelector('.progress-track') ? ma : ma;
+
+/* Fade out only the inner content, not the container */
+ma.style.setProperty('--content-opacity', '0');
+
+const inner = document.createElement('div');
+inner.className = 'sim-content-wrap';
+inner.style.opacity = '0';
+inner.style.transition = 'opacity 0.4s ease';
+
+setTimeout(() => {
+    ma.innerHTML = `
+        <div class="sim-content-wrap" style="opacity:0; transition: opacity 0.4s ease;">
+            <div class="scene-loader">
+                <div class="loader-block">
+                    <div class="loader-scan"></div>
+                    <div class="loader-lines">
+                        <div class="loader-line"></div>
+                        <div class="loader-line"></div>
+                        <div class="loader-line"></div>
+                        <div class="loader-line"></div>
+                        <div class="loader-line"></div>
+                    </div>
+                </div>
+                <p class="loader-text">processing<span class="loader-dots"></span></p>
+            </div>
+        </div>
+    `;
+    const wrap = ma.querySelector('.sim-content-wrap');
+    requestAnimationFrame(() => {
+        wrap.style.opacity = '1';
+    });
+
+    setTimeout(() => {
+        wrap.style.opacity = '0';
+        setTimeout(() => {
+            renderScene();
+        }, 400);
+    }, 2000);
+}, 400);
 }
 
 function getTopImpactDecisions() {
@@ -801,5 +874,3 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.updateHUDPlayhead = updatePlayhead;
 })();
-
-

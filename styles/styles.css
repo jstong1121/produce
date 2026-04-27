@@ -41,6 +41,7 @@ body {
 }
 
 
+
 /*Screen Switching*/
 .screen {
     display: none;
@@ -479,17 +480,32 @@ mark:hover {
     color: #FDDC43;
 }
 
-.stage-desc{
+.stage-desc {
     font-size: 1rem;
-    color: #060934;
+    color: #1a1d4a;
     line-height: 1.85;
-    border:#F0EDE6 1px solid;
-    padding: 1rem 1.5rem;
-    border-radius: 6px;
-    background: rgba(253, 220, 67, 0.9);;
+    padding: 1.2rem 1.8rem;
+    background: rgba(253, 220, 67, 0.85);
     display: none;
     margin-top: 1rem;
     margin-left: 1.9rem;
+
+    -webkit-mask:
+        radial-gradient(circle at 0% 50%, transparent 10px, black 10px),
+        radial-gradient(circle at 100% 50%, transparent 10px, black 10px),
+        radial-gradient(circle at 0% 0%, transparent 6px, black 6px),
+        radial-gradient(circle at 100% 0%, transparent 6px, black 6px),
+        radial-gradient(circle at 0% 100%, transparent 6px, black 6px),
+        radial-gradient(circle at 100% 100%, transparent 6px, black 6px);
+    -webkit-mask-composite: destination-in;
+    mask:
+        radial-gradient(circle at 0% 50%, transparent 10px, black 10px),
+        radial-gradient(circle at 100% 50%, transparent 10px, black 10px),
+        radial-gradient(circle at 0% 0%, transparent 6px, black 6px),
+        radial-gradient(circle at 100% 0%, transparent 6px, black 6px),
+        radial-gradient(circle at 0% 100%, transparent 6px, black 6px),
+        radial-gradient(circle at 100% 100%, transparent 6px, black 6px);
+    mask-composite: intersect;
 }
 
 .stage-desc.expanded {
@@ -567,6 +583,72 @@ mark:hover {
     border-top: 1px solid #252860;
     padding-top: 0.5rem;
 }
+/*Tool*/
+.tool-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+}
+
+.tool-table thead tr {
+    border-bottom: 1px solid #505992;
+}
+
+.tool-table th {
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.7rem;
+    color: #8a90c8;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    padding: 0.5rem 1.5rem 0.5rem 0;
+    text-align: left;
+    font-weight: 400;
+}
+
+.tool-table tbody tr {
+    border-bottom: 1px solid #1a1d4a;
+    transition: background 0.15s;
+}
+
+.tool-table tbody tr:hover {
+    background: rgba(80, 89, 146, 0.15);
+}
+
+.tool-table td {
+    padding: 0.7rem 1.5rem 0.7rem 0;
+    vertical-align: middle;
+    color: #C3D4E6;
+    line-height: 1.6;
+}
+
+.tool-name-cell {
+    font-family: 'Bayon', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+    color: #F0EDE6;
+    width: 160px;
+    vertical-align: middle;
+}
+
+.tool-name-cell mark {
+    font-family: 'Bayon', sans-serif;
+    font-size: 1rem;
+    border-bottom: none;
+}
+
+.tool-table .tool-type-cell {
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.8rem;
+    color: #8a90c8;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+    width: 80px;
+    vertical-align: middle;
+}
+
 
 /*Myth*/
 .myth-grids{
@@ -798,6 +880,43 @@ mark:hover {
     min-height: calc(100vh - 44px);
     width: calc(100% - 250px);
     box-sizing: border-box;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: background-image 0.8s ease;
+}
+
+/* Dark overlay so content stays readable */
+.sim-main::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(6, 9, 52, 0.82);  /* your midnight blue at 82% opacity */
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Make all direct children sit above the overlay */
+.sim-main > * {
+    position: relative;
+    z-index: 1;
+}
+
+.sim-bg-development {
+    background-image: url('../images/bg-development.png');
+}
+.sim-bg-preproduction {
+    background-image: url('../images/bg-preproduction.png');
+}
+.sim-bg-production {
+    background-image: url('../images/bg-production.png');
+}
+.sim-bg-postproduction {
+    background-image: url('../images/bg-postproduction.png');
+}
+.sim-bg-distribution {
+    background-image: url('../images/bg-distribution.png');
 }
 
 /* Progress bar */
@@ -1060,8 +1179,93 @@ mark:hover {
 }
 
 
+/*Transition between questions*/
+.scene-loader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 50vh;
+    gap: 1.5rem;
+}
 
-/* ── HUD OVERLAY ─────────────────────────── */
+.loader-block {
+    width: 120px;
+    height: 70px;
+    border: 1px solid #505992;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+    background: #0a0d30;
+}
+
+.loader-scan {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #FDDC43;
+    animation: scan 1.2s ease-in-out infinite;
+    box-shadow: 0 0 8px rgba(253, 220, 67, 0.4);
+}
+
+@keyframes scan {
+    0%   { top: 0%; opacity: 1; }
+    50%  { top: 100%; opacity: 0.6; }
+    100% { top: 0%; opacity: 1; }
+}
+
+.loader-lines {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 8px 10px;
+}
+
+.loader-line {
+    height: 2px;
+    background: #1a1d4a;
+    border-radius: 1px;
+    animation: flicker 1.5s ease-in-out infinite;
+}
+
+.loader-line:nth-child(1) { width: 70%; animation-delay: 0s; }
+.loader-line:nth-child(2) { width: 90%; animation-delay: 0.2s; }
+.loader-line:nth-child(3) { width: 55%; animation-delay: 0.4s; }
+.loader-line:nth-child(4) { width: 80%; animation-delay: 0.1s; }
+.loader-line:nth-child(5) { width: 65%; animation-delay: 0.3s; }
+
+@keyframes flicker {
+    0%, 100% { opacity: 0.3; }
+    50%       { opacity: 0.8; }
+}
+
+.loader-text {
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.7rem;
+    color: #8a90c8;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
+
+.loader-dots::after {
+    content: '';
+    animation: dots 1.5s steps(4, end) infinite;
+}
+
+@keyframes dots {
+    0%   { content: ''; }
+    25%  { content: '.'; }
+    50%  { content: '..'; }
+    75%  { content: '...'; }
+    100% { content: ''; }
+}
+
+
+/*HUD OVERLAY*/
 #simulate {
     position: relative;
 }
@@ -1400,7 +1604,7 @@ mark:hover {
 @media (max-width: 768px) {
 
     html {
-        font-size: 15px;
+        font-size: 17px;
     }
 
     /* Topbar */
@@ -1600,7 +1804,7 @@ mark:hover {
 @media (max-width: 480px) {
 
     html {
-        font-size: 14px;
+        font-size: 17px;
     }
 
     .home-title {
