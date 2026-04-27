@@ -18,12 +18,10 @@
     <!-- LINK TO YOUR JS HERE. NOTE THE DEFER ATTRIBUTE. -->
     <script src="scripts/scripts.js" defer></script>
   </head>
-  <body>
     <!-- YOUR HTML GOES HERE -->
 
     <!-- YOUR EXTERNAL PLUG-IN MAY ASK YOU TO PUT A SCRIPT TAG HERE. -->
-  </body>
-</html>
+
 
 
 <body>
@@ -52,8 +50,14 @@
             <p class="home-tagline">Every film starts with someone asking: can we make this?
             Learn what a film producer actually does, and simulate the process of producing a film, from development to distribution. </p>
             <div class="home-buttons">
-                <button class="home-btn1" href="#learn">START LEARNING →</button>
-                <button class="home-btn2" href="#simulate">ENTER SIMULATION →</button>
+                <button class="ticket-btn ticket-btn-primary home-btn1" href="#learn">
+                    <span class="ticket-label">START LEARNING</span>
+                    <span class="ticket-arrow">→</span>
+                </button>
+                <button class="ticket-btn ticket-btn-ghost home-btn2" href="#simulate">
+                    <span class="ticket-label">ENTER SIMULATION</span>
+                    <span class="ticket-arrow">→</span>
+                </button>
             </div>
         </div>
     </div>
@@ -74,6 +78,11 @@
             </p>
         </div>
 
+        <div class="section-divider">
+            <div class="divider-line"></div>
+            <img src="../images/divider-icon.png" alt="" class="divider-icon" />
+            <div class="divider-line"></div>
+        </div>
 
         <div class="body1">
             <h5 class="sec-label">// 01 - What is a Producer</h5>
@@ -240,22 +249,22 @@
 
             <div class="myth-grids">
                 <div class="myth-card">
-                    <p class="myth-label">Myth: Producers just write checks</p>
+                    <p class="myth-label">MYTH: Producers just write checks</p>
                     <p class="myth-desc">Most producers don't fund films from their own pocket. They raise money — from studios, investors, 
                         tax incentives, and co-production deals. The financial work is architecture, not a personal ATM.</p>
                 </div>
                 <div class="myth-card">
-                    <p class="myth-label">Myth: The director is in charge</p>
+                    <p class="myth-label">MYTH: The director is in charge</p>
                     <p class="myth-desc">On set, yes. But the producer hired the director. In a financial dispute, 
                         the producer often has final say, especially on budget decisions.</p>
                 </div>
                 <div class="myth-card">
-                    <p class="myth-label">Myth: Executive producer = more important</p>
+                    <p class="myth-label">MYTH: Executive producer = more important</p>
                     <p class="myth-desc">Not necessarily. Executive producers often provide financing but aren't involved day-to-day. 
                         The producer actually running the project may have less impressive-sounding credit.</p>
                 </div>
                 <div class="myth-card">
-                    <p class="myth-label">Myth: Producers are only there during shooting</p>
+                    <p class="myth-label">MYTH: Producers are only there during shooting</p>
                     <p class="myth-desc">Production is where the producer's prep pays off. The real producing happens in development 
                         and pre-production, often years before anyone says action.</p>
                 </div>
@@ -264,7 +273,10 @@
 
         <div class="cta-bar">
             <h5 class="cta-text">// Ready to produce your own film?</h5>
-            <button class="cta-btn" href="#simulate">ENTER SIMULATION → </button>
+            <button class="ticket-btn ticket-btn-primary cta-btn" href="#simulate">
+                <span class="ticket-label">ENTER SIMULATION</span> 
+                <span class="ticket-arrow">→</span>
+            </button>
         </div>
 
     </div> <!-- End of Learn -->
@@ -277,6 +289,44 @@
 
     <!-- SIMULATE -->
     <div id="simulate" class="screen">
+        <!-- HUD OVERLAY ELEMENTS -->
+<div class="hud-topleft">
+    <div class="hud-corner-tl"></div>
+    <span class="hud-project">PROJECT: <strong>PRODUCE.</strong></span>
+    <span class="hud-status"><span class="hud-dot"></span>SYSTEM ONLINE</span>
+</div>
+
+<div class="hud-topright">
+    <div class="hud-corner-tr"></div>
+    <span class="hud-frame" id="hud-frame">FRAME 01</span>
+    <span class="hud-timecode" id="hud-timecode">00:00:00:00</span>
+</div>
+
+<div class="hud-bottomleft">
+    <div class="hud-corner-bl"></div>
+</div>
+
+<div class="hud-bottomright">
+    <div class="hud-corner-br"></div>
+</div>
+
+<!-- TIMELINE BAR -->
+<div class="hud-timeline">
+    <div class="hud-timeline-track">
+        <div class="hud-timeline-labels">
+            <span>00:00:00:00</span>
+            <span>00:00:15:00</span>
+            <span>00:00:30:00</span>
+            <span>00:00:45:00</span>
+            <span>00:01:00:00</span>
+            <span>00:01:15:00</span>
+        </div>
+        <div class="hud-timeline-ticks">
+            <div class="hud-timeline-playhead" id="hud-playhead"></div>
+        </div>
+    </div>
+</div>
+
         <div class="sim-wrap">
 
             <!-- Sidebar -->
@@ -328,8 +378,11 @@
 
             <!-- Main Simulation Area -->
             <div class="sim-main" id="sim-main">
-                
+    
             </div>
+
+            
+
 
 
         </div>
@@ -343,6 +396,7 @@
 
     <!-- RESULTS -->
     <div id="results" class="screen">
+
         <div class="results-main">
             <h5 class="sec-label">// All Outcomes</h5>
             <h2 class="sec-title">What Every Results Mean</h2>
@@ -359,14 +413,88 @@
                         <p class="pill-label">Budget > $1,400K</p>
                         <p class="pill-risk">Risk < 40</p>
                     </div>
-                    <p class="results-desc"></p>
+                    <p class="results-desc">Your film opens in over 1,200 theaters and critics are calling it a revelation. 
+                        Two studios have already reached out about your next project.</p>
+                    <p class="results-why">You made disciplined decisions throughout and protected your budget. Low risk means no 
+                        compounding crises, you solved problems before they spiraled. Films that hit wide release aren't always the 
+                        most ambitious. They're the ones where the producer never let a single bad decision compound.</p>
+                    <div class="results-film">
+                        <p class="results-film-label">real-world parallel</p>
+                        <p class="results-film-title">Everything Everywhere All at Once (2022)</p>
+                        <p class="results-film-desc">Made for around $14M by A24 with the Daniels directing. A disciplined limited-to-wide 
+                            release strategy turned it into the most awarded film in Oscar history and a genuine cultural phenomenon.</p>
+                    </div>
                 </div>
+
+                <div class="results-card">
+                    <p class="results-tier">Tier 2 - Strong</p>
+                    <h6 class="results-title">Festival Circuit</h6>
+                    <div class="results-pill">
+                        <p class="pill-label">Budget > $900K</p>
+                        <p class="pill-risk">Risk < 60</p>
+                    </div>
+                    <p class="results-desc">The film premieres at a Tier 1 festival and streaming rights sell within the week. A real film finding its audience.</p>
+                    <p class="results-why">You made mostly solid decisions but absorbed a few costly hits along the way. Risk crept up through compounding 
+                        choices rather than one catastrophic call. The story was strong enough to survive the turbulence, but by distribution the numbers did not support a wide push.</p>
+                    <div class="results-film">
+                        <p class="results-film-label">real-world parallel</p>
+                        <p class="results-film-title">Moonlight (2016)</p>
+                        <p class="results-film-desc">Produced for $1.5M under constant budget pressure, Barry Jenkins and producer 
+                            Adele Romanski kept every decision tight. It premiered at Telluride, sold to A24 for a careful limited release, and won Best Picture.</p>
+                    </div>
+                </div>
+
+                <div class="results-card">
+                    <p class="results-tier">Tier 3 - Modest</p>
+                    <h6 class="results-title">Limited Release</h6>
+                    <div class="results-pill">
+                        <p class="pill-label">Budget > $400K</p>
+                        <p class="pill-risk">Any risk level</p>
+                    </div>
+                    <p class="results-desc">The film plays in around 40 cities and finds a small but devoted audience. You learned more making this than any amount of planning could have taught you.</p>
+                    <p class="results-why">Your production survived but was significantly drained at some point along the way, likely by at least one decision that compounded 
+                        badly when you could least afford it. Limited release is not failure. Most independent films never get this far. But the path here usually involved a 
+                        ghost rewrite, waiting out the no-show, or going fully theatrical with a budget that could not support it.</p>
+                    <div class="results-film">
+                        <p class="results-film-label">real-world parallel</p>
+                        <p class="results-film-title">Beasts of the Southern Wild (2012)</p>
+                        <p class="results-film-desc">Shot for under $2M in genuinely brutal conditions with a non-professional cast, producer Dan Janvey held the production together 
+                            through constant logistical crises. It earned an Oscar nomination and became a cult classic precisely because of the constraints it refused to be defeated by.</p>
+                    </div>
+                </div>
+
+                <div class="results-card">
+                    <p class="results-tier">Tier 4 - Worst</p>
+                    <h6 class="results-title">Shelved</h6>
+                    <div class="results-pill">
+                        <p class="pill-label">Budget ≤ $400K</p>
+                        <p class="pill-risk">Any risk level</p>
+                    </div>
+                    <p class="results-desc">The film never reaches release. Budget overruns and distribution problems pulled it under before it could find an audience. The question now is what you do next.</p>
+                    <p class="results-why">You ran out of money before the film could reach an audience. This almost always comes from a cluster of expensive 
+                        early mistakes that compounded without a recovery window between them. Each individual decision might have been survivable on its own. Together they were not.</p>
+                    <div class="results-film">
+                        <p class="results-film-label">real-world parallel</p>
+                        <p class="results-film-title">The Man Who Killed Don Quixote (2000-2018)</p>
+                        <p class="results-film-desc">Terry Gilliam's passion project collapsed on day two of principal photography due to a flash flood, 
+                            a lead actor's injury, and military jets ruining the location sound. Legal battles and budget crises kept it in limbo for 18 years. 
+                            It finally released in 2018, not the film anyone intended to make.</p>
+                    </div>
+                </div>
+
+
+
+
             </div>
+
         </div>
 
         <div class="cta-bar">
             <h5 class="cta-text">// Try different choices to see how they affect your outcome!</h5>
-            <button class="cta-btn" href="#simulate">RETRY SIMULATION → </button>
+            <button class="ticket-btn ticket-btn-primary cta-btn" href="#simulate">
+                <span class="ticket-label">RETRY SIMULATION</span>
+                <span class="ticket-arrow">→</span>
+            </button>
         </div>
 
     </div> <!-- End of Results -->
