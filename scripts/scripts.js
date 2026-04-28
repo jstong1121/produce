@@ -533,6 +533,7 @@ setTimeout(() => {
             </div>
         </div>
     `;
+    updateScreenPadding();
     const wrap = ma.querySelector('.sim-content-wrap');
     requestAnimationFrame(() => {
         wrap.style.opacity = '1';
@@ -885,3 +886,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.updateHUDPlayhead = updatePlayhead;
 })();
+
+
+/* ── TOPBAR HEIGHT COMPENSATION ─────────── */
+function updateScreenPadding() {
+    const topbar = document.querySelector('.topbar');
+    if (!topbar) return;
+    const h = topbar.getBoundingClientRect().height;
+    document.querySelectorAll('.screen').forEach(s => {
+        s.style.paddingTop = h + 'px';
+    });
+}
+
+updateScreenPadding();
+window.addEventListener('resize', updateScreenPadding);
