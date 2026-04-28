@@ -930,8 +930,9 @@ mark:hover {
     box-sizing: border-box;
     position: relative;
     background-size: cover;
-    background-position: center;
+    background-position: center center;
     background-repeat: no-repeat;
+    background-attachment: fixed;
     transition: background-image 0.8s ease;
 }
 
@@ -1236,6 +1237,8 @@ mark:hover {
     justify-content: center;
     min-height: 50vh;
     gap: 1.5rem;
+    position: relative;
+    z-index: 1;
 }
 
 .loader-block {
@@ -1743,7 +1746,6 @@ mark:hover {
         display: flex;
         flex-direction: column;
     }
-    @media (max-width: 768px) {
 
     .sidebar {
         position: relative;
@@ -1764,14 +1766,20 @@ mark:hover {
         margin-left: 0;
         width: 100%;
         padding: 1.2rem 1rem;
-        min-height: auto;
+        min-height: 70vh;
         order: 2;
+        background-size: cover;
+        background-position: center center;
+        background-attachment: scroll;
+        background-repeat: no-repeat;
     }
-    .sim-main {
-    background-size: cover;
-    background-position: center top;
-    background-attachment: scroll;
-}
+    .sim-content-wrap {
+        min-height: 70vh;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    
 
     /* Current stage indicator — single line */
     .pipeline-section {
@@ -1862,8 +1870,6 @@ mark:hover {
     #simulate .sim-wrap {
         padding-bottom: 0;
     }
-
-}
 
     /* Outcome stats */
     .outcome-stats {

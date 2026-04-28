@@ -416,20 +416,22 @@ function renderScene() {
     const pct = Math.round(simState.decisionIdx / TOTAL_DECISIONS * 100);
 
     ma.innerHTML = `
-        <div class="progress-track">
-            <div class="progress-active" id="prog-track" style="width:${pct}%"></div>
+        <div class="sim-content-wrap">
+            <div class="progress-track">
+                <div class="progress-active" id="prog-track" style="width:${pct}%"></div>
+            </div>
+            <div class="scene-card${isEmg ? ' emergency' : ''}">
+                <p class="scene-stage">${isEmg ? '// EMERGENCY — ' : '// '}${STAGES[sc.stage].toLowerCase()} — decision ${simState.decisionIdx + 1} of ${TOTAL_DECISIONS}</p>
+                <h3 class="scene-title">${sc.title}</h3>
+                <p class="scene-body">${sc.body}</p>
+                ${isEmg && sc.timerSecs ? `
+                    <div class="timer-bar"><div class="timer-fill" id="tfill" style="width:100%"></div></div>
+                    <p class="timer-text" id="timer-txt">${sc.timerSecs}s to decide</p>
+                ` : ''}
+            </div>
+            <div class="choices" id="choices-area"></div>
+            <div id="feedback-area"></div>
         </div>
-        <div class="scene-card${isEmg ? ' emergency' : ''}">
-            <p class="scene-stage">${isEmg ? '// EMERGENCY — ' : '// '}${STAGES[sc.stage].toLowerCase()} — decision ${simState.decisionIdx + 1} of ${TOTAL_DECISIONS}</p>
-            <h3 class="scene-title">${sc.title}</h3>
-            <p class="scene-body">${sc.body}</p>
-            ${isEmg && sc.timerSecs ? `
-                <div class="timer-bar"><div class="timer-fill" id="tfill" style="width:100%"></div></div>
-                <p class="timer-text" id="timer-txt">${sc.timerSecs}s to decide</p>
-            ` : ''}
-        </div>
-        <div class="choices" id="choices-area"></div>
-        <div id="feedback-area"></div>
     `;
 
     const ca = document.getElementById('choices-area');
