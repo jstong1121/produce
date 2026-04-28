@@ -121,7 +121,7 @@ body {
 }
 
 .home-main{
-    padding: 3.5rem 6rem;
+    padding: 3.5rem 7%;
     display: flex;
     flex-direction: column;
     gap:0;
@@ -1177,6 +1177,14 @@ mark:hover {
     font-weight: 600;
     margin-bottom: 0.2rem;
 }
+.results-film-link .outcome-film-title {
+    transition: color 0.2s;
+}
+
+.results-film-link:hover .outcome-film-title {
+    color: #FDDC43;
+}
+
 .outcome-film-desc {
     font-size: 0.85rem;
     color: #A091B8;
@@ -1644,6 +1652,20 @@ mark:hover {
     line-height: 1.6;
 }
 
+.results-film-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.results-film-link .results-film-title {
+    transition: color 0.2s;
+    display: inline;
+}
+
+.results-film-link:hover .results-film-title {
+    color: #FDDC43;
+}
+
 .results-footnote {
     margin-top: 2rem;
     padding-top: 1.5rem;
@@ -1740,6 +1762,14 @@ mark:hover {
     }
     .sec-title {
         font-size: 1.3rem;
+    }
+
+    .role-hierarchy{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        min-width: unset;
+        width: 100%;
     }
    
     .budget-grids {
@@ -1853,7 +1883,6 @@ mark:hover {
         flex-shrink: 0;
     }
 
-    /* Resources as 2x2 grid */
     .resource-section {
         display: block;
     }

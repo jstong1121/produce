@@ -563,30 +563,34 @@ function getTopImpactDecisions() {
 
 function showOutcome() {
     const bPct = Math.round(simState.budget / 2000 * 100);
-    let title, sub, col, film, filmDesc, longWhy;
+    let title, sub, col, film, filmLink,filmDesc, longWhy;
 
     if (simState.budget > 1300 && simState.risk < 40) {
         title = 'WIDE RELEASE'; col = '#FDDC43';
         sub = 'Your film opens in over 1,200 theaters and critics are calling it a revelation. Two studios have already reached out about your next project.';
         film = 'Everything Everywhere All at Once (2022)';
+        filmLink = 'https://www.imdb.com/title/tt6710474/';
         filmDesc = "Made for around $14M by A24 with the Daniels directing. A disciplined limited-to-wide release strategy turned it into the most awarded film in Oscar history and a genuine cultural phenomenon.";
         longWhy = "You made disciplined decisions throughout and protected your budget. Low risk means no compounding crises, you solved problems before they spiraled. Films that hit wide release aren't always the most ambitious. They're the ones where the producer never let a single bad decision compound.";
     } else if (simState.budget > 900 && simState.risk < 60) {
         title = 'FESTIVAL CIRCUIT'; col = '#C5C1D8';
         sub = 'The film premieres at a Tier 1 festival and streaming rights sell within the week. Not the wide release you looked for, but it got made and found its audience.';
         film = 'Moonlight (2016)';
+        filmLink = 'https://www.imdb.com/title/tt4975722/';
         filmDesc = 'Produced for $1.5M under constant budget pressure, Barry Jenkins and producer Adele Romanski kept every decision tight. It premiered at Telluride, sold to A24 for a careful limited release, and won Best Picture.';
         longWhy = "You made mostly solid decisions but absorbed a few costly hits along the way. Risk crept up through compounding choices rather than one catastrophic call. The story was strong enough to survive the turbulence, but by distribution the numbers did not support a wide push.";
     } else if (simState.budget > 400) {
         title = 'LIMITED RELEASE'; col = '#8884A8';
         sub = 'The film plays in around 40 cities and finds a small but devoted audience. You learned more making this than any amount of planning could have taught you.';
         film = 'Beasts of the Southern Wild (2012)';
+        filmLink = 'https://www.imdb.com/title/tt2125435/';
         filmDesc = 'Shot for under $2M in genuinely brutal conditions with a non-professional cast, producer Dan Janvey held the production together through constant logistical crises. It earned an Oscar nomination and became a cult classic precisely because of the constraints it refused to be defeated by.';
         longWhy = "Your production survived but was significantly drained at some point along the way, likely by at least one decision that compounded badly when you could least afford it. Limited release is not failure. Most independent films never get this far. But the path here usually involved a ghost rewrite, waiting out the no-show, or going fully theatrical with a budget that could not support it.";
     } else {
         title = 'SHELVED'; col = '#E24B4A';
         sub = "The film never reaches release. Budget overruns and distribution problems pulled it under before it could find an audience. The question now is what you do next.";
         film = 'The Man Who Killed Don Quixote (2000–2018)';
+        filmLink = 'https://www.imdb.com/title/tt0374900/';
         filmDesc = "Terry Gilliam's passion project collapsed on day two of principal photography due to a flash flood, a lead actor's injury, and military jets ruining the location sound. Legal battles and budget crises kept it in limbo for 18 years. It finally released in 2018, not the film anyone intended to make.";
         longWhy = "You ran out of money before the film could reach an audience. This almost always comes from a cluster of expensive early mistakes that compounded without a recovery window between them. Each individual decision might have been survivable on its own. Together they were not.";
     }
@@ -647,7 +651,9 @@ function showOutcome() {
             <p class="outcome-body">${longWhy}</p>
             <hr class="outcome-divider">
             <p class="outcome-section-label">// real-world parallel</p>
-            <p class="outcome-film-title">${film}</p>
+            <a href="${filmLink}" target="_blank" class="results-film-link">
+                <p class="outcome-film-title">${film}</p>
+            </a>
             <p class="outcome-film-desc">${filmDesc}</p>
             <div class="outcome-buttons">
                 <button class="ticket-btn ticket-btn-primary" onclick="restart()">
