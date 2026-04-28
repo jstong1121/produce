@@ -295,7 +295,7 @@ body {
 
 /*   ------------------   LEARN   -----------------   */
 /*BG*/
-#learn, #results{
+#learn, #results, #about{
     background-image: url('../images/learn-bg.png');
     background-repeat: repeat;
     background-size: auto;
@@ -303,16 +303,16 @@ body {
     position: relative;
 }
 
-#learn::before, #results::before {
+#learn::before, #results::before, #about::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: rgba(6, 9, 52, 0.75);
+    background: rgba(6, 9, 52, 0.82);
     pointer-events: none;
     z-index: 0;
 }
 
-#learn > *, #results > * {
+#learn > *, #results > *, #about > * {
     position: relative;
     z-index: 1;
 }
@@ -372,7 +372,7 @@ body {
 .divider-icon {
     width: 32px;
     height: 32px;
-    opacity: 0.5;
+    opacity: 0.7;
     flex-shrink: 0;
 }
 
@@ -419,6 +419,14 @@ mark:hover {
 }
 
 /*Role Card*/
+.role-hierarchy {
+    width: 100%;
+    max-width: 580px;
+    min-width: 420px;
+    margin-top: 2rem;
+    opacity: 0.95;
+}
+
 .role-grids {
     display: flex;
     flex-direction: row;
@@ -1649,8 +1657,36 @@ mark:hover {
 
 
 
+/*ABOUT*/
+#about .hero-body + .hero-body {
+    margin-top: 1rem;
+}
 
+#about .role-grids {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    overflow-x: visible;
+    align-items: stretch;
+}
 
+#about .role-grids a {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    height: 100%;
+}
+
+#about .role-grids a .role-card {
+    height: 100%;
+    transition: border-color 0.2s, background 0.2s;
+    cursor: pointer;
+    max-width: none;
+}
+
+#about .role-grids a .role-card:hover {
+    border-color: #FDDC43;
+    background: #0d1148;
+}
 
 
 
@@ -1890,6 +1926,10 @@ mark:hover {
         grid-template-columns: 1fr;
     }
 
+    #about .role-grids {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
 }
 
 @media (max-width: 487px) {
@@ -1930,6 +1970,10 @@ mark:hover {
         padding: 0.4rem 0.8rem;
         gap: 0.3rem;
     }
+
+    #about .role-grids {
+        grid-template-columns: 1fr;
+    }
 }
 
 @media (max-width: 436px) {
@@ -1943,3 +1987,4 @@ mark:hover {
         padding-top: 7.5rem;
     }
 }
+
