@@ -966,6 +966,12 @@ mark:hover {
     background-image: url('../images/bg-distribution.png');
 }
 
+.sim-content-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
 /* Progress bar */
 .progress-track {
     height: 2px;
@@ -1112,7 +1118,7 @@ mark:hover {
     color: #C3D4E6;
     line-height: 1.65;
     margin-bottom: 1rem;
-    max-inline-size: 75ch;
+    max-inline-size: 90ch;
 }
 .outcome-stats {
     display: grid;

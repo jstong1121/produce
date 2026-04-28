@@ -417,6 +417,7 @@ function renderScene() {
 
     ma.innerHTML = `
         <div class="sim-content-wrap">
+        <div class="sim-top-guard"></div>
             <div class="progress-track">
                 <div class="progress-active" id="prog-track" style="width:${pct}%"></div>
             </div>
@@ -617,6 +618,7 @@ function showOutcome() {
     const pPct = Math.max(0, Math.min(100, simState.progress));
 
     document.getElementById('sim-main').innerHTML = `
+        <div class="sim-top-guard"></div>
         <div class="outcome-card">
             <p class="outcome-label">// FINAL CUT — ${TOTAL_DECISIONS} decisions made</p>
             <h2 class="outcome-title" style="color:${col}">${title}</h2>
