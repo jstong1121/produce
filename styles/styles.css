@@ -121,7 +121,7 @@ body {
 }
 
 .home-main{
-    padding: 3rem 5rem;
+    padding: 3.5rem 6rem;
     display: flex;
     flex-direction: column;
     gap:0;
@@ -294,10 +294,32 @@ body {
 
 
 /*   ------------------   LEARN   -----------------   */
+/*BG*/
+#learn, #results{
+    background-image: url('../images/learn-bg.png');
+    background-repeat: repeat;
+    background-size: auto;
+    background-attachment: local;
+    position: relative;
+}
+
+#learn::before, #results::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(6, 9, 52, 0.75);
+    pointer-events: none;
+    z-index: 0;
+}
+
+#learn > *, #results > * {
+    position: relative;
+    z-index: 1;
+}
 
 /*hero*/
 .hero{
-    padding: 3rem 5rem;
+    padding: 3rem 13rem;
 }
 
 .hero-label{
@@ -339,8 +361,8 @@ body {
     height: 1px;
     background-image: repeating-linear-gradient(
         to right,
-        #505992 0px,
-        #505992 2px,
+        #FDDC43 0px,
+        #FDDC43 2px,
         transparent 2px,
         transparent 8px
     );
@@ -356,7 +378,7 @@ body {
 
 /*main content*/
 .body1, .body2, .body3, .body4, .body5, .body6 {
-    padding: 2.3rem 5rem;
+    padding: 2.3rem 13rem;
     border-bottom: #1a1d4a 1px solid;
 }
 
@@ -485,7 +507,7 @@ mark:hover {
     color: #1a1d4a;
     line-height: 1.85;
     padding: 1.2rem 1.8rem;
-    background: rgba(253, 220, 67, 0.85);
+    background: rgba(253, 220, 67, 0.9);
     display: none;
     margin-top: 1rem;
     margin-left: 1.9rem;
@@ -524,7 +546,7 @@ mark:hover {
 /*Budget*/
 .budget-grids{
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 0.6rem;
     margin-top: 1.5rem;
 }
@@ -583,6 +605,20 @@ mark:hover {
     border-top: 1px solid #252860;
     padding-top: 0.5rem;
 }
+
+.budget-eg a {
+    color: #C3D4E6;
+    text-decoration: none;
+    border-bottom: 1px solid #505992;
+    transition: color 0.2s, border-color 0.2s;
+}
+
+.budget-eg a:hover {
+    color: #FDDC43;
+    border-bottom-color: #FDDC43;
+}
+
+
 /*Tool*/
 .tool-table {
     width: 100%;
@@ -672,7 +708,7 @@ mark:hover {
     font-size: 0.9rem;
     font-weight: 300;
     color: #F06060;
-    margin-top: 0.5rem;
+    margin-bottom: 0.4rem;
 }
 
 .myth-desc{
@@ -686,7 +722,7 @@ mark:hover {
 
 /*cta*/
 .cta-bar{
-    padding: 2.3rem 5rem;
+    padding: 2.3rem 13rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -695,7 +731,7 @@ mark:hover {
 
 .cta-text{
     font-family: 'Courier Prime', monospace;
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     font-weight: 300;
     color: #A091B8;
 }
@@ -722,8 +758,9 @@ mark:hover {
 }
 
 /*space in between paragraphs*/
-#learn p + p {
-        margin-top: 1rem;
+#learn .sec-body + .sec-body,
+#learn .hero-body + .hero-body {
+    margin-top: 1rem;
 }
 
 
@@ -798,33 +835,44 @@ mark:hover {
     display: flex;
     flex-direction: column;
     gap: 5px;
+    margin-bottom: 0.5rem;
 }
 .stat-item {
     background: #0a0d30;
     border: 1px solid #1a1d4a;
     border-radius: 5px;
-    padding: 0.5rem 0.8rem;
+    padding: 0.4rem 0.8rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
 }
+
 .stat-name {
     font-family: 'Courier Prime', monospace;
     font-size: 0.7rem;
     color: #8a90c8;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    margin-bottom: 0.2rem;
+    margin-bottom: 0;
 }
+
 .stat-val {
     font-family: 'Courier Prime', monospace;
-    font-size: 1rem;
+    font-size: 0.85rem;
     font-weight: 700;
     color: #F0EDE6;
     transition: color 0.3s;
+    position: absolute;
+    top: 0.4rem;
+    right: 0.8rem;
+    text-align: right;
 }
+
 .stat-bar {
-    height: 3px;
+    height: 2px;
     background: #1a1d4a;
     border-radius: 2px;
-    margin-top: 4px;
+    margin-top: 0.3rem;
     overflow: hidden;
 }
 .stat-fill {
@@ -854,7 +902,7 @@ mark:hover {
 }
 .log-entry {
     font-family: 'Courier Prime', monospace;
-    font-size: 0.7rem;
+    font-size: 0.6rem;
     color: #8a90c8;
     padding: 0.2rem 0;
     border-bottom: 1px solid #0d1148;
@@ -873,7 +921,7 @@ mark:hover {
 /*Simulation Main Area*/
 .sim-main {
     margin-left: 250px;
-    padding: 4rem 2rem 1.5rem 2rem;
+    padding: 4rem 2rem 5rem 2rem;
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -887,17 +935,15 @@ mark:hover {
     transition: background-image 0.8s ease;
 }
 
-/* Dark overlay so content stays readable */
 .sim-main::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: rgba(6, 9, 52, 0.82);  /* your midnight blue at 82% opacity */
+    background: rgba(6, 9, 52, 0.82);
     pointer-events: none;
     z-index: 0;
 }
 
-/* Make all direct children sit above the overlay */
 .sim-main > * {
     position: relative;
     z-index: 1;
@@ -965,13 +1011,13 @@ mark:hover {
     font-family: 'Bayon', sans-serif;
     font-size: 1.4rem;
     color: #F0EDE6;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.2rem;
     letter-spacing: 0.04em;
 }
 .scene-body {
-    font-size: 0.95rem;
+    font-size: 1rem;
     color: #C3D4E6;
-    line-height: 1.75;
+    line-height: 1.75;;
     white-space: normal; 
     word-break: normal;
 }
@@ -1010,7 +1056,7 @@ mark:hover {
     cursor: pointer;
     color: #C3D4E6;
     font-family: 'Source Sans 3', sans-serif;
-    font-size: 0.95rem;
+    font-size: 1rem;
     line-height: 1.55;
     width: 100%;
     transition: background 0.2s, border-color 0.2s, color 0.2s;
@@ -1043,7 +1089,7 @@ mark:hover {
     background: #0a0d30;
     border: 1px solid #FDDC43;
     border-radius: 8px;
-    padding: 1.5rem;
+    padding: 2rem;
 }
 .outcome-label {
     font-family: 'Courier Prime', monospace;
@@ -1065,6 +1111,7 @@ mark:hover {
     color: #C3D4E6;
     line-height: 1.65;
     margin-bottom: 1rem;
+    max-inline-size: 75ch;
 }
 .outcome-stats {
     display: grid;
@@ -1105,19 +1152,21 @@ mark:hover {
 }
 .outcome-body {
     font-size: 0.9rem;
+    max-inline-size: 75ch;
     color: #C3D4E6;
     line-height: 1.7;
 }
 .outcome-film-title {
-    font-size: 0.9rem;
+    font-size: 1rem;
     color: #F0EDE6;
     font-weight: 600;
     margin-bottom: 0.2rem;
 }
 .outcome-film-desc {
-    font-size: 0.82rem;
+    font-size: 0.85rem;
     color: #A091B8;
     line-height: 1.55;
+    max-inline-size: 75ch;
 }
 .outcome-buttons {
     display: flex;
@@ -1480,7 +1529,7 @@ mark:hover {
 
 /* ----------------------   RESULT PAGE   -----------------   */
 .results-main{
-    padding: 3rem 5rem;
+    padding: 3rem 13rem;
 }
 
 .results-grids {

@@ -543,7 +543,7 @@ setTimeout(() => {
         setTimeout(() => {
             renderScene();
         }, 400);
-    }, 2000);
+    }, 1200);
 }, 400);
 }
 
@@ -569,7 +569,7 @@ function showOutcome() {
         longWhy = "You made disciplined decisions throughout and protected your budget. Low risk means no compounding crises, you solved problems before they spiraled. Films that hit wide release aren't always the most ambitious. They're the ones where the producer never let a single bad decision compound.";
     } else if (simState.budget > 900 && simState.risk < 60) {
         title = 'FESTIVAL CIRCUIT'; col = '#C5C1D8';
-        sub = 'The film premieres at a Tier 1 festival and streaming rights sell within the week. A real film finding its audience.';
+        sub = 'The film premieres at a Tier 1 festival and streaming rights sell within the week. Not the wide release you looked for, but it got made and found its audience.';
         film = 'Moonlight (2016)';
         filmDesc = 'Produced for $1.5M under constant budget pressure, Barry Jenkins and producer Adele Romanski kept every decision tight. It premiered at Telluride, sold to A24 for a careful limited release, and won Best Picture.';
         longWhy = "You made mostly solid decisions but absorbed a few costly hits along the way. Risk crept up through compounding choices rather than one catastrophic call. The story was strong enough to survive the turbulence, but by distribution the numbers did not support a wide push.";
@@ -659,6 +659,7 @@ function showOutcome() {
 
     simState.stageIdx = 4;
     updateHUD();
+    document.getElementById('sim-main').scrollTop = 0;
 }
 
 function restart() {
@@ -705,15 +706,25 @@ const TERMS = {
   const tip = document.getElementById('tooltip');
 
   document.addEventListener('mouseover', e => {
-    const el = e.target.closest('mark[data-term]');
-    if (el) {
-      const def = TERMS[el.getAttribute('data-term')];
-      if (def) {
-        tip.textContent = def;
-        tip.classList.add('show');
-      }
+      const el = e.target.closest('mark[data-term]');
+      if (el) {
+          const def = TERMS[el.getAttribute('data-term')];
+          if (def) {
+              tip.textContent = def;
+              tip.classList.add('show');
+
+              if (el.closest('.stage-desc')) {
+                tip.style.background = '#0d1148';
+                tip.style.color = '#C3D4E6';
+                tip.style.border = '1px solid rgba(253, 220, 67, 0.3)';
+            } else {
+                tip.style.background = '#FDDC43';
+                tip.style.color = '#060934';
+                tip.style.border = 'none';
+            }
+        }
     }
-  });
+});
 
   document.addEventListener('mousemove', e => {
     let x = e.clientX + 14;
